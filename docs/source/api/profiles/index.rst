@@ -14,5 +14,6 @@ Typically a laser will be constructed through a combination of two classes ``Lon
    combined_profile
    from_array_profile
    from_openpmd_profile
+   axiparabola_profile
    longitudinal/index
    transverse/index
