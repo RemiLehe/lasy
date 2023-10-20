@@ -1,10 +1,13 @@
-from .profile import Profile
+from .profile import FromArrayProfile
 
 
-class AxiParabolaProfile(Profile):
+class AxiParabolaProfile(FromArrayProfile):
     """
 
     Mention reference + is one type of flying-focus laser
+    + add warning about computing time
+    + make it derive from interpolating grid
+    +
 
     Parameters
     ----------
@@ -30,9 +33,22 @@ class AxiParabolaProfile(Profile):
     """
 
     def __init__(self, wavelength, pol, laser_energy, long_profile):
-        super().__init__(wavelength, pol)
+        self.wavelength = wavelength
+        self.pol = pol
         self.laser_energy = laser_energy
         self.long_profile = long_profile
+        self.fully_initialized = False
+
+    def finalize_initialization_with_grid_parameters(self, grid):
+        """
+        TODO
+        """
+        # Finalize the initialization of the parent class `FromArrayProfile`
+        super().__
+
+
+        self.fully_initialized = True
+
 
     def evaluate(self, x, y, t):
         """
@@ -50,5 +66,8 @@ class AxiParabolaProfile(Profile):
             Contains the value of the envelope at the specified points
             This array has the same shape as the arrays x, y, t
         """
-        envelope = self.trans_profile.evaluate(x, y) * self.long_profile.evaluate(t)
-        return envelope
+        if not self.fully_initialized:
+            raise #TODO
+        else:
+            #
+            return super().evaluate(self, x, y, t)
