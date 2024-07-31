@@ -1,6 +1,7 @@
+from math import factorial
+
 import numpy as np
 from scipy.special import hermite
-from math import factorial
 
 from .transverse_profile import TransverseProfile
 
@@ -9,9 +10,8 @@ class HermiteGaussianTransverseProfile(TransverseProfile):
     r"""
     A high-order Gaussian laser pulse expressed in the Hermite-Gaussian formalism.
 
-    Derived class for an analytic profile.
     More precisely, the transverse envelope (to be used in the
-    :class:CombinedLongitudinalTransverseLaser class) corresponds to:
+    :class:`.CombinedLongitudinalTransverseLaser` class) corresponds to:
 
     .. math::
 
@@ -71,13 +71,13 @@ class HermiteGaussianTransverseProfile(TransverseProfile):
 
         Parameters
         ----------
-        x, y: ndarrays of floats
+        x, y : ndarrays of floats
             Define points on which to evaluate the envelope
             These arrays need to all have the same shape.
 
         Returns
         -------
-        envelope: ndarray of complex numbers
+        envelope : ndarray of complex numbers
             Contains the value of the envelope at the specified points
             This array has the same shape as the arrays x, y
         """

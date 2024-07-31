@@ -5,10 +5,10 @@ from .longitudinal_profile import LongitudinalProfile
 
 class GaussianLongitudinalProfile(LongitudinalProfile):
     r"""
-    Derived class for the analytic profile of a longitudinally-Gaussian laser pulse.
+    Class for the analytic profile of a longitudinally-Gaussian laser pulse.
 
     More precisely, the longitudinal envelope
-    (to be used in the :class:CombinedLongitudinalTransverseProfile class)
+    (to be used in the :class:`.CombinedLongitudinalTransverseProfile` class)
     corresponds to:
 
     .. math::
@@ -46,12 +46,12 @@ class GaussianLongitudinalProfile(LongitudinalProfile):
 
         Parameters
         ----------
-        t: ndarrays of floats
+        t : ndarrays of floats
             Define points on which to evaluate the envelope
 
         Returns
         -------
-        envelope: ndarray of complex numbers
+        envelope : ndarray of complex numbers
             Contains the value of the longitudinal envelope at the
             specified points. This array has the same shape as the array t.
         """

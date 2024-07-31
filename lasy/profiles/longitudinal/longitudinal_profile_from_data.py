@@ -6,7 +6,7 @@ from .longitudinal_profile import LongitudinalProfile
 
 class LongitudinalProfileFromData(LongitudinalProfile):
     """
-    Derived class for longitudinal laser profile created using data.
+    Class for longitudinal laser profile created using data.
 
     The data used can either come from an experimental measurement
     or from the output of another code. This data is then used to
@@ -28,10 +28,10 @@ class LongitudinalProfileFromData(LongitudinalProfile):
             are 'spectral' and 'temporal'
 
         axis : ndarrays of floats
-            The horizontal axis of the pulse duration measurement
-            When datatype is 'spectral' axis is wavelength in
-            meters
-            When datatype is 'temporal' axis is time in seconds
+            The horizontal axis of the pulse duration measurement.
+            The array must be monotonously increasing.
+            When datatype is 'spectral' axis is wavelength in meters.
+            When datatype is 'temporal' axis is time in seconds.
 
         intensity : ndarrays of floats
             The vertical axis of the pulse duration measurement.
@@ -62,8 +62,14 @@ class LongitudinalProfileFromData(LongitudinalProfile):
         if data["datatype"] == "spectral":
             # First find central frequency
             wavelength = data["axis"]
+            assert np.all(
+                np.diff(wavelength) > 0
+            ), 'data["axis"] must be in monotonously increasing order.'
             spectral_intensity = data["intensity"]
-            spectral_phase = data["phase"]
+            if data.get("phase") is None:
+                spectral_phase = np.zeros_like(wavelength)
+            else:
+                spectral_phase = data["phase"]
             dt = data["dt"]
             cwl = np.sum(spectral_intensity * wavelength) / np.sum(spectral_intensity)
             cfreq = c / cwl
@@ -106,7 +112,10 @@ class LongitudinalProfileFromData(LongitudinalProfile):
         elif data["datatype"] == "temporal":
             time = data["axis"]
             temporal_intensity = data["intensity"]
-            temporal_phase = data["phase"]
+            if data.get("phase") is None:
+                temporal_phase = np.zeros_like(time)
+            else:
+                temporal_phase = data["phase"]
             cwl = data["wavelength"]
 
         else:

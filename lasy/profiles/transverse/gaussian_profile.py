@@ -5,10 +5,10 @@ from .transverse_profile import TransverseProfile
 
 class GaussianTransverseProfile(TransverseProfile):
     r"""
-    Derived class for the analytic profile of a Gaussian laser pulse.
+    Class for the analytic profile of a Gaussian laser pulse.
 
     More precisely, at focus (``z_foc=0``), the transverse envelope
-    (to be used in the :class:CombinedLongitudinalTransverseLaser class)
+    (to be used in the :class:`.CombinedLongitudinalTransverseLaser` class)
     corresponds to:
 
     .. math::

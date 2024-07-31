@@ -13,6 +13,7 @@
 import os
 import sys
 from datetime import date
+
 from lasy import __version__
 
 sys.path.insert(0, os.path.abspath("../.."))
@@ -38,17 +39,16 @@ extensions = [
     "sphinx.ext.coverage",
     "sphinx.ext.autosummary",
     "sphinx.ext.viewcode",
+    "sphinx_copybutton",
     "sphinx_design",
     "numpydoc",
     "matplotlib.sphinxext.plot_directive",
+    "nbsphinx",
 ]
 
 # Numpydoc settings
 numpydoc_show_class_members = False
 numpydoc_use_plots = True
-
-# Autodoc Settings
-add_module_names = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -78,6 +78,7 @@ html_theme_options = {
             "icon": "fa-brands fa-github",
         },
     ],
+    "navigation_with_keys": False,
 }
 
 # Prevent panels extension from modifying page style.
